@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45AD5D1D-0AD1-4DA0-9C31-EE76F7D0D7DF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>P2</RootNamespace>
+    <AssemblyName>P2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>flag.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesoADatos.cs" />
+    <Compile Include="ComboBoxWrap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Conv.cs" />
+    <Compile Include="FormListadoSolicitudes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListadoSolicitudes.Designer.cs">
+      <DependentUpon>FormListadoSolicitudes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMedio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMedio.Designer.cs">
+      <DependentUpon>FormMedio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdmin.Designer.cs">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCiudad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCiudad.Designer.cs">
+      <DependentUpon>FormCiudad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEstadis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEstadis.Designer.cs">
+      <DependentUpon>FormEstadis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEstado.Designer.cs">
+      <DependentUpon>FormEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFicha.Designer.cs">
+      <DependentUpon>FormFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListaDeFichas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListaDeFichas.Designer.cs">
+      <DependentUpon>FormListaDeFichas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListaRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListaRegistro.Designer.cs">
+      <DependentUpon>FormListaRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManStatus.Designer.cs">
+      <DependentUpon>FormManStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMarca.Designer.cs">
+      <DependentUpon>FormMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPago.Designer.cs">
+      <DependentUpon>FormPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPaises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPaises.Designer.cs">
+      <DependentUpon>FormPaises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPaisPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPaisPeriodo.Designer.cs">
+      <DependentUpon>FormPaisPeriodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPeriodo.Designer.cs">
+      <DependentUpon>FormPeriodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrintRes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrintRes.Designer.cs">
+      <DependentUpon>FormPrintRes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrintSol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrintSol.Designer.cs">
+      <DependentUpon>FormPrintSol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistro.Designer.cs">
+      <DependentUpon>FormRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormResol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormResol.Designer.cs">
+      <DependentUpon>FormResol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStatus.Designer.cs">
+      <DependentUpon>FormStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImagenProceso.cs" />
+    <Compile Include="PhoneControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PhoneControl.Designer.cs">
+      <DependentUpon>PhoneControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Programa2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programa2DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Programa2DataSet1.cs">
+      <DependentUpon>Programa2DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Programa2DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programa2DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Programa2DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programa2DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Programa2DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programa2DataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Programa2DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programa2DataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Programa2DataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programa2DataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResoluciónDelExpediente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResoluciónDelExpediente.Designer.cs">
+      <DependentUpon>ResoluciónDelExpediente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VenezuelaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VenezuelaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VenezuelaDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VenezuelaDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VenezuelaDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VenezuelaDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VenezuelaDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VenezuelaDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VenezuelaDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VenezuelaDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VenezuelaDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VenezuelaDataSet5.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormListadoSolicitudes.resx">
+      <DependentUpon>FormListadoSolicitudes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMedio.resx">
+      <DependentUpon>FormMedio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCiudad.resx">
+      <DependentUpon>FormCiudad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEstadis.resx">
+      <DependentUpon>FormEstadis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEstado.resx">
+      <DependentUpon>FormEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFicha.resx">
+      <DependentUpon>FormFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListaDeFichas.resx">
+      <DependentUpon>FormListaDeFichas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListaRegistro.resx">
+      <DependentUpon>FormListaRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManStatus.resx">
+      <DependentUpon>FormManStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMarca.resx">
+      <DependentUpon>FormMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPago.resx">
+      <DependentUpon>FormPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaises.resx">
+      <DependentUpon>FormPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPaisPeriodo.resx">
+      <DependentUpon>FormPaisPeriodo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPeriodo.resx">
+      <DependentUpon>FormPeriodo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrintRes.resx">
+      <DependentUpon>FormPrintRes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrintSol.resx">
+      <DependentUpon>FormPrintSol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistro.resx">
+      <DependentUpon>FormRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormResol.resx">
+      <DependentUpon>FormResol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatus.resx">
+      <DependentUpon>FormStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhoneControl.resx">
+      <DependentUpon>PhoneControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ResoluciónDelExpediente.resx">
+      <DependentUpon>ResoluciónDelExpediente.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Programa2DataSet.xsc">
+      <DependentUpon>Programa2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Programa2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Programa2DataSet.xss">
+      <DependentUpon>Programa2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet1.xsc">
+      <DependentUpon>Programa2DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Programa2DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Programa2DataSet1.xss">
+      <DependentUpon>Programa2DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet2.xsc">
+      <DependentUpon>Programa2DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Programa2DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Programa2DataSet2.xss">
+      <DependentUpon>Programa2DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet3.xsc">
+      <DependentUpon>Programa2DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Programa2DataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Programa2DataSet3.xss">
+      <DependentUpon>Programa2DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet4.xsc">
+      <DependentUpon>Programa2DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Programa2DataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Programa2DataSet4.xss">
+      <DependentUpon>Programa2DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet5.xsc">
+      <DependentUpon>Programa2DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="Programa2DataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Programa2DataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Programa2DataSet5.xss">
+      <DependentUpon>Programa2DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="VenezuelaDataSet.xsc">
+      <DependentUpon>VenezuelaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VenezuelaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VenezuelaDataSet.xss">
+      <DependentUpon>VenezuelaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet1.xsc">
+      <DependentUpon>VenezuelaDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VenezuelaDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VenezuelaDataSet1.xss">
+      <DependentUpon>VenezuelaDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet2.xsc">
+      <DependentUpon>VenezuelaDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VenezuelaDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VenezuelaDataSet2.xss">
+      <DependentUpon>VenezuelaDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet3.xsc">
+      <DependentUpon>VenezuelaDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VenezuelaDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VenezuelaDataSet3.xss">
+      <DependentUpon>VenezuelaDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet4.xsc">
+      <DependentUpon>VenezuelaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VenezuelaDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VenezuelaDataSet4.xss">
+      <DependentUpon>VenezuelaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet5.xsc">
+      <DependentUpon>VenezuelaDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="VenezuelaDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VenezuelaDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VenezuelaDataSet5.xss">
+      <DependentUpon>VenezuelaDataSet5.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="flag.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
