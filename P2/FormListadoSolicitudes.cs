@@ -20,6 +20,7 @@ namespace P2
         ImagenProceso imagen;
         PictureBox img;
         string filtro;
+        string filtro2;
         public FormListadoSolicitudes(int usr, string per, string pa)
         {
             InitializeComponent();
@@ -38,6 +39,19 @@ namespace P2
 
             acceso.grid_expedientes(ref dt, ref dataGridView1, periodo, "");
 
+            dataGridView1.Columns[0].Visible = false;
+            
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[11].Visible = false;
+            
+            for (int i = 16; i < 63; i++)
+                dataGridView1.Columns[i].Visible = false;
+
             label2.Text = dataGridView1.Rows.Count.ToString();
         }
 
@@ -52,14 +66,32 @@ namespace P2
                     filtro += " AND ";
                 filtro += "solicitudes.LugarNac like '%" + textBox1.Text + "%' ";
             }
-            if (textBox2.Text.Length > 0) //lugar de residencia
+            if ((textBox2.Text.Length > 0) || (textBox3.Text.Length > 0) || (textBox4.Text.Length > 0) || (textBox5.Text.Length > 0) ) //lugar de residencia
             {
                 if (filtro.Length > 0)
                     filtro += " AND ";
-                filtro += "(solicitudes.Domicilio like '%" + textBox2.Text + "%' OR ";
-                filtro += "solicitudes.Localidad like '%" + textBox2.Text + "%' OR ";
-                filtro += "solicitudes.Ciudad like '%" + textBox2.Text + "%' OR ";
-                filtro += "solicitudes.Estado like '%" + textBox2.Text + "%') ";
+                filtro2 = "";
+                filtro += " ( ";
+                if (textBox2.Text.Length > 0) filtro += "solicitudes.Domicilio like '%" + textBox2.Text + "%' ";
+                
+                if (textBox3.Text.Length > 0)
+                {
+                    if (filtro2.Length > 0) filtro += " OR ";
+                    filtro += "solicitudes.Localidad like '%" + textBox3.Text + "%' ";
+                    filtro2 = ".";
+                }
+                if (textBox4.Text.Length > 0)
+                {
+                    if (filtro2.Length > 0) filtro += " OR ";
+                    filtro += "solicitudes.Ciudad like '%" + textBox4.Text + "%' ";
+                    filtro2 = ".";
+                }
+                if (textBox5.Text.Length > 0)
+                {
+                    if (filtro2.Length > 0) filtro += " OR ";
+                    filtro += "solicitudes.Estado like '%" + textBox5.Text + "%' ";
+                }
+                filtro += " ) ";
             }
             if (comboBox1.Text.Length > 0)
             {
@@ -83,6 +115,19 @@ namespace P2
                 filtro += "solicitudes.IdStatus<>'06' AND solicitudes.IdStatus<>'08' ";
             }
             acceso.grid_expedientes(ref dt, ref dataGridView1, periodo, filtro, 4);
+            dataGridView1.Columns[0].Visible = false;
+            
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[11].Visible = false;
+
+            for (int i = 16; i < 63; i++)
+                dataGridView1.Columns[i].Visible = false;
+            
             label2.Text = dataGridView1.Rows.Count.ToString();
             imagen.fin_espere();
         }
