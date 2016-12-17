@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,20 @@ namespace P2
         AccesoADatos acceso = new AccesoADatos(Application.StartupPath);
         ImagenProceso imagen;
         PictureBox img;
-        string filtro;
-        string filtro2;
+        string filtro="";
+        string filtro2="";
+
+        private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
+        private PrintDocument printDocument1 = new PrintDocument();
+
+        // Declare a string to hold the entire document contents.
+        private string documentContents;
+
+        // Declare a variable to hold the portion of the document that
+        // is not printed.
+        private string stringToPrint;
+
+
         public FormListadoSolicitudes(int usr, string per, string pa)
         {
             InitializeComponent();
@@ -137,6 +150,88 @@ namespace P2
             dataGridView1.Width = this.Width;
             groupBox1.Top = this.Height - groupBox1.Height-50;
             dataGridView1.Height = groupBox1.Top - dataGridView1.Top;
+        }
+
+        private void ReadDocument()
+        {
+            if (filtro.Length < 1) filtro = "todos";
+            string cabecera = "EXPEDIENTE  NOMBRE              APELLIDO           LOCALIDAD \n\n";
+            string total="\nTotal de registros: "+label2.Text;
+            string cab1 = "Registros a buscar: " + filtro+"\n";
+            string txt1 = "";
+            string txt2 = "";
+            string txt3 = "";
+            string txt4 = "";
+            
+            for (int i=0; i<dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value.ToString().Length<10)
+                    txt1 = dataGridView1.Rows[i].Cells[1].Value.ToString().PadRight(10, ' ');
+                else
+                    txt1 = dataGridView1.Rows[i].Cells[1].Value.ToString().Substring(0,10);
+                if (dataGridView1.Rows[i].Cells[3].Value.ToString().Length<20)
+                    txt2 = dataGridView1.Rows[i].Cells[3].Value.ToString().PadRight(20, ' ');
+                else
+                    txt2 = dataGridView1.Rows[i].Cells[3].Value.ToString().Substring(0,20);
+                if (dataGridView1.Rows[i].Cells[4].Value.ToString().Length < 20)
+                    txt3 = dataGridView1.Rows[i].Cells[4].Value.ToString().PadRight(20, ' ');
+                else
+                    txt3 = dataGridView1.Rows[i].Cells[4].Value.ToString().Substring(0, 20);
+                if (dataGridView1.Rows[i].Cells[9].Value.ToString().Length < 15)
+                    txt4 = dataGridView1.Rows[i].Cells[9].Value.ToString().PadRight(15, ' ');
+                else
+                    txt4 = dataGridView1.Rows[i].Cells[9].Value.ToString().Substring(0, 15);
+                stringToPrint = stringToPrint + txt1 +
+                    txt2 +
+                    txt3 +
+                    txt4 +
+                    "\n";
+            }
+            stringToPrint = cab1 + cabecera + stringToPrint+ total;
+        }
+
+        void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            
+        }
+        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ReadDocument();
+            printPreviewDialog1.Document = printDocument2;
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void printDocument2_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            int charactersOnPage = 0;
+            int linesPerPage = 0;
+            Font f = new Font("Courier New", 10);
+
+            // Sets the value of charactersOnPage to the number of characters 
+            // of stringToPrint that will fit within the bounds of the page.
+            /*e.Graphics.MeasureString(stringToPrint, this.Font,
+                e.MarginBounds.Size, StringFormat.GenericTypographic,
+                out charactersOnPage, out linesPerPage);*/
+            e.Graphics.MeasureString(stringToPrint, f,
+                e.MarginBounds.Size, StringFormat.GenericTypographic,
+                out charactersOnPage, out linesPerPage);
+
+            // Draws the string within the bounds of the page.
+            /*e.Graphics.DrawString(stringToPrint, this.Font, Brushes.Black,
+            e.MarginBounds, StringFormat.GenericTypographic);*/
+            e.Graphics.DrawString(stringToPrint, f, Brushes.Black,
+            e.MarginBounds, StringFormat.GenericTypographic);
+
+            // Remove the portion of the string that has been printed.
+            stringToPrint = stringToPrint.Substring(charactersOnPage);
+
+            // Check to see if more pages are to be printed.
+            e.HasMorePages = (stringToPrint.Length > 0);
+
+            // If there are no more pages, reset the string to be printed.
+            if (!e.HasMorePages)
+                stringToPrint = documentContents;
         }
     }
 }
