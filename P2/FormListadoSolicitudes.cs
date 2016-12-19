@@ -22,6 +22,7 @@ namespace P2
         PictureBox img;
         string filtro="";
         string filtro2="";
+        string txt_filtro = "";
 
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
@@ -32,6 +33,7 @@ namespace P2
         // Declare a variable to hold the portion of the document that
         // is not printed.
         private string stringToPrint;
+        private string stringToPrint_bk;
 
 
         public FormListadoSolicitudes(int usr, string per, string pa)
@@ -72,61 +74,118 @@ namespace P2
         {
             imagen.espere();
             filtro = "";
+            txt_filtro = "";
 
             if (textBox1.Text.Length > 0) //lugar de nacimiento
             {
                 if (filtro.Length > 0)
+                {
                     filtro += " AND ";
+                    txt_filtro += " Y ";
+                }
                 filtro += "solicitudes.LugarNac like '%" + textBox1.Text + "%' ";
+                txt_filtro = "Lugar de nacimiento = " + textBox1.Text;
             }
-            if ((textBox2.Text.Length > 0) || (textBox3.Text.Length > 0) || (textBox4.Text.Length > 0) || (textBox5.Text.Length > 0) ) //lugar de residencia
-            {
-                if (filtro.Length > 0)
+            /*if ((textBox2.Text.Length > 0) || (textBox3.Text.Length > 0) || (textBox4.Text.Length > 0) || (textBox5.Text.Length > 0) ) //lugar de residencia
+            {*/
+                
+                /*filtro2 = "";
+                filtro += " ( ";*/
+                if (textBox2.Text.Length > 0)
+                {
+                    if (filtro.Length > 0)
+                {
                     filtro += " AND ";
-                filtro2 = "";
-                filtro += " ( ";
-                if (textBox2.Text.Length > 0) filtro += "solicitudes.Domicilio like '%" + textBox2.Text + "%' ";
+                    txt_filtro += " Y ";
+                }
+                    filtro += "solicitudes.Domicilio like '%" + textBox2.Text + "%' ";
+                    //filtro2 = ".";
+                    txt_filtro += " Domicilio = "+ textBox2.Text;
+                }
                 
                 if (textBox3.Text.Length > 0)
                 {
-                    if (filtro2.Length > 0) filtro += " OR ";
+                    if (filtro.Length > 0)
+                {
+                    filtro += " AND ";
+                    txt_filtro += " Y ";
+                }
+                 /*   if (filtro2.Length > 0)
+                    {
+                        filtro += " OR ";
+                        txt_filtro += " O ";
+                    }*/
                     filtro += "solicitudes.Localidad like '%" + textBox3.Text + "%' ";
-                    filtro2 = ".";
+                    //filtro2 = ".";
+                    txt_filtro += " Localidad =  "+textBox3.Text;
                 }
                 if (textBox4.Text.Length > 0)
                 {
-                    if (filtro2.Length > 0) filtro += " OR ";
+                    if (filtro.Length > 0)
+                {
+                    filtro += " AND ";
+                    txt_filtro += " Y ";
+                }
+                 /*   if (filtro2.Length > 0)
+                    {
+                        filtro += " OR ";
+                        txt_filtro += " O ";
+                    }*/
                     filtro += "solicitudes.Ciudad like '%" + textBox4.Text + "%' ";
-                    filtro2 = ".";
+                    //filtro2 = ".";
+                    txt_filtro += " Ciudad =  " + textBox4.Text;
                 }
                 if (textBox5.Text.Length > 0)
                 {
-                    if (filtro2.Length > 0) filtro += " OR ";
-                    filtro += "solicitudes.Estado like '%" + textBox5.Text + "%' ";
+                    if (filtro.Length > 0)
+                {
+                    filtro += " AND ";
+                    txt_filtro += " Y ";
                 }
-                filtro += " ) ";
-            }
+                 /*   if (filtro2.Length > 0)
+                    {
+                        filtro += " OR ";
+                        txt_filtro += " O ";
+                    }*/
+                    filtro += "solicitudes.Estado like '%" + textBox5.Text + "%' ";
+                    txt_filtro += " Estado =  " + textBox5.Text;
+                }
+                //filtro += " ) ";
+            //}
             if (comboBox1.Text.Length > 0)
             {
                 if (filtro.Length > 0)
+                {
                     filtro += " AND ";
+                    txt_filtro += " Y ";
+                }
                 string nummes = Convert.ToString(comboBox1.SelectedIndex);
                 if (nummes.Length==1) nummes="0"+nummes;
 
                 filtro += "Month(solicitudes.FSolic)=" + nummes;
+                txt_filtro += " Mes =  " + comboBox1.Text;
             }
             if (radioButton1.Checked == true) //aprobadas
             {
                 if (filtro.Length > 0)
+                {
                     filtro += " AND ";
+                    txt_filtro += " Y ";
+                }
                 filtro += "(solicitudes.IdStatus='06' OR solicitudes.IdStatus='08') ";
+                txt_filtro += " Aprobadas";
             }
             if (radioButton2.Checked == true) //denegadas
             {
                 if (filtro.Length > 0)
                     filtro += " AND ";
                 filtro += "solicitudes.IdStatus<>'06' AND solicitudes.IdStatus<>'08' ";
+                txt_filtro += " Denegadas";
             }
+            if (txt_filtro.Length > 70)
+                txt_filtro.Insert(70, "\n");
+            if (txt_filtro.Length > 140)
+                txt_filtro.Insert(140, "\n");
             acceso.grid_expedientes(ref dt, ref dataGridView1, periodo, filtro, 4);
             dataGridView1.Columns[0].Visible = false;
             
@@ -154,10 +213,11 @@ namespace P2
 
         private void ReadDocument()
         {
-            if (filtro.Length < 1) filtro = "todos";
-            string cabecera = "EXPEDIENTE  NOMBRE              APELLIDO           LOCALIDAD \n\n";
+            if (filtro.Length < 1) txt_filtro = "todos";
+            string cabecera = "\nEXPEDIENTE  NOMBRE              APELLIDO           LOCALIDAD \n\n";
             string total="\nTotal de registros: "+label2.Text;
-            string cab1 = "Registros a buscar: " + filtro+"\n";
+            string cab1 = "";
+            cab1 = "Filtro: " + txt_filtro + "\n";
             string txt1 = "";
             string txt2 = "";
             string txt3 = "";
@@ -187,7 +247,8 @@ namespace P2
                     txt4 +
                     "\n";
             }
-            stringToPrint = cab1 + cabecera + stringToPrint+ total;
+            stringToPrint_bk = cab1 + cabecera + stringToPrint+ total;
+            stringToPrint = stringToPrint_bk;
         }
 
         void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
@@ -207,6 +268,7 @@ namespace P2
             int charactersOnPage = 0;
             int linesPerPage = 0;
             Font f = new Font("Courier New", 10);
+            if (stringToPrint == null) stringToPrint = stringToPrint_bk;
 
             // Sets the value of charactersOnPage to the number of characters 
             // of stringToPrint that will fit within the bounds of the page.
